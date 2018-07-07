@@ -1,7 +1,12 @@
 
-<%= react_component('VideoPlayer', {videoName: @video.name, videoHostUri: ENV['VIDEO_HOST_URI']} ) %>
+<%= react_component('VideoPlayer', {
+                            videoName: @video.name,
+                            videoHostUri: ENV['VIDEO_HOST_URI'],
+                             cardInfo: @videos,
+                            imgPath: ENV['IMAGE_HOST_URL'],
+} ) %>
 <br/>
 <%= react_component('Cards', {cardInfo: @videos,
                               imgPath: ENV['IMAGE_HOST_URL'],
-                              videoUrl: ENV['VIDEO_HOST_URI']}
+                              videoUrl: ENV['VIDEO_HOST_URI'], }
     ) %>
