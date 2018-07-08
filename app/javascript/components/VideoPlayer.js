@@ -37,7 +37,9 @@ VideoPlayer.propTypes = {
     videoHostUri: PropTypes.string,
     videoName: PropTypes.string
 };
-// https://github.com/video-react/video-react/blob/master/src/components/Player.js
+
+
+/*https://github.com/video-react/video-react/blob/master/src/components/Player.js*/
 
 /*
  * VIDEO_HOST_URI: http://localhost:4000/videos/
@@ -48,6 +50,4 @@ VideoPlayer.propTypes = {
  IMAGE_HOST_URL: http://localhost:4000/images/
  *
  * */
-
-
 
