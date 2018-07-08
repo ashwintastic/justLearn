@@ -5,10 +5,10 @@
     <title>Ashwini</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
-    <%= react_component('ReactHome') %>
+    <%= react_component('ReactHome', { homeUri: ENV['HOME_URI'] }) %>
   </head>
 
   <body>

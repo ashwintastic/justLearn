@@ -16,13 +16,14 @@ class VideoPlayer extends React.Component {
         return (
             <div className="container-fluid">
                 <div className="col-sm-8 offset-sm-2">
-            <div className="container row video-top-margin">
-                <Player
-                    playsInline
-                    src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
-                />
-            </div>
-            </div>
+                    <div className="container custom-row video-top-margin">
+                        <Player
+                            playsInline
+                            src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
+                            poster="https://www.planwallpaper.com/static/images/2015-wallpaper_111525594_269.jpg"
+                        />
+                    </div>
+                </div>
             </div>
 
         );
