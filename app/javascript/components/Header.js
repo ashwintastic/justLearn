@@ -22,9 +22,9 @@ class Header extends React.Component {
         return (
             <nav className="navbar navbar-default navbar-fixed-top navbar-burger">
                 <div className="container-fluid">
-                    <div>
+        
                         <a className="navbar-brand" href={this.props.homeUri}>Web name</a>
-                    </div>
+                
                     <Async
                         name="form-field-name"
                         value="one"

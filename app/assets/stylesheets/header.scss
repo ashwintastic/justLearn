@@ -1,0 +1,49 @@
+
+.Select-control {
+  background-color: #fff;
+  border-color: #d9d9d9 #ccc #b3b3b3;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: default;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  height: 36px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  width: 74% !important;
+  left: 1%;
+  top: 7px !important;
+}
+
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 14px 0vw 0% 1%;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+
+@media screen and (max-width: 600px) {
+ .Select-control {
+   background-color: #fff !important;
+   border-color: #d9d9d9 #ccc #b3b3b3 !important;
+   border-radius: 4px !important;
+   border: 1px solid #ccc !important;
+   color: #333 !important;
+   cursor: default !important;
+   display: table !important;
+   border-spacing: 0 !important;
+   border-collapse: separate !important;
+   height: 36px !important;
+   outline: none !important;
+   overflow: hidden !important;
+   position: relative !important;
+   width: 67% !important;
+   top: 7px !important;
+    left: 1%;
+ }
+}
