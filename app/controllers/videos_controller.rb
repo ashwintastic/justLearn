@@ -17,6 +17,11 @@ class VideosController < ApplicationController
 
   end
 
+  def search_video
+    debugger
+    render :json => { message:  "ko"}
+    Video.search_videos(params[:name])
+  end
   # GET /videos/new
   def new
     @video = Video.new

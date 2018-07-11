@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   #watch
   get '/watch/:id', to: 'videos#render_video'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/search', to: 'videos#search_video', as: 'search'
 end

@@ -2,20 +2,19 @@ import React from "react"
 import PropTypes from "prop-types"
 import { BrowserRouter, Route, Link, Router } from 'react-router-dom'
 import { Async } from 'react-select';
+import callApi from '../helper/fetch'
+
+
 
 class Header extends React.Component {
 
-    getOptions(){
-        var promise1 = new Promise(function(resolve, reject) {
-            resolve()
-        });
-        return(promise1.then( ()=>{
-                return  [
-                    { value: 'one', label: 'One' },
-                    { value: 'two', label: 'Two' }
-                ]
-            })
-        )
+    getOptions(e){
+        console.log("hi", e)
+        if (e === '')
+         return
+        callApi('http://localhost:3000/search?'+'name='+e).then( (resp)=>{
+           console.log('heheh', resp)
+        })
     }
 
     render () {
