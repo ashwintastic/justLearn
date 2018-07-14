@@ -8,16 +8,34 @@ import callApi from '../helper/fetch'
 
 class Header extends React.Component {
 
+    constructor(props){
+        super(props)
+        this.state ={
+            options: null
+        }
+    }
+
     getOptions(e){
         console.log("hi", e)
         if (e === '')
          return
-        callApi('http://localhost:3000/search?'+'name='+e).then( (resp)=>{
+        return callApi('http://localhost:3000/search/'+e).then( (resp)=>{
            console.log('heheh', resp)
+           //this.setState({options: resp.options})
+           return {options: resp.options}
         })
+    
+    }
+
+    handleOnChange(e){
+     console.log("hikkkkk", e)
+     window.history.pushState("", "", "/?q="+e.value);
+     window.location.reload();
+
     }
 
     render () {
+        console.log("render called")
         return (
             <nav className="navbar navbar-default navbar-fixed-top navbar-burger">
                 <div className="container-fluid">
@@ -28,6 +46,8 @@ class Header extends React.Component {
                         name="form-field-name"
                         value="one"
                         loadOptions={this.getOptions.bind(this)}
+                        onChange = {this.handleOnChange}
+                
                     />
 
                 </div>

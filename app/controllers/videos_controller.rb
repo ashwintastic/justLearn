@@ -7,8 +7,12 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.all
-    p "indexxxxxxxxxxxxxxxxxxxxxxxxxx#{@videos}"
+    @videos = if params.include?(:q)
+
+    Video.search_videos(params[:q]) 
+  else
+    Video.all
+  end
   end
 
   # GET /videos/1
@@ -18,9 +22,9 @@ class VideosController < ApplicationController
   end
 
   def search_video
-    debugger
-    render :json => { message:  "ko"}
-    Video.search_videos(params[:name])
+    resp = Keyword.suggest_keywords(params[:name])
+    render json: {options: resp}
+    # resp = Video.search_videos(params[:name])
   end
   # GET /videos/new
   def new
@@ -31,6 +35,10 @@ class VideosController < ApplicationController
   def edit
   end
 
+
+ # def search_result
+  #  @videos = Video.where('name like :query', query: params[:q])
+  #end
   # POST /videos
   # POST /videos.json
   def create

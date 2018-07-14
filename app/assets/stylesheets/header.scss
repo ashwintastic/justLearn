@@ -13,7 +13,7 @@
   outline: none;
   overflow: hidden;
   position: relative;
-  width: 74% !important;
+  width: 35% !important;
   left: 1%;
   top: 7px !important;
 }
@@ -47,3 +47,27 @@
     left: 1%;
  }
 }
+
+.Select-menu-outer {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top-color: #e6e6e6;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    margin-top: -1px;
+    max-height: 200px;
+    position: inherit !important;
+    left: 97px;
+    top: 100%;
+    width: 35% !important;
+    z-index: 1;
+    -webkit-overflow-scrolling: touch;
+}
+
+.Select-menu {
+    max-height: 198px;
+    overflow-y: auto;
+    width: 100% !important;
+    }

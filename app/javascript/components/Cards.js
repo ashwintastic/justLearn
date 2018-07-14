@@ -53,8 +53,7 @@ class Cards extends React.Component {
                 <Col xs={customXsMd.xs} md={customXsMd.md} key={card.token}>
                     <Thumbnail src='https://www.planwallpaper.com/static/images/2015-wallpaper_111525594_269.jpg'
                                >
-                        <h4>Thumbnail label</h4>
-                        <p>Description</p>
+                        <h4>{card.name}</h4>
                     </Thumbnail>
                 </Col>
                 </a>
