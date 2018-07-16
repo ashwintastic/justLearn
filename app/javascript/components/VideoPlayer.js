@@ -8,9 +8,7 @@ class VideoPlayer extends React.Component {
         super(props)
 
     }
-
-
-
+    
     render () {
         const {videoHostUri, videoName } = this.props;
         return (
@@ -32,7 +30,6 @@ class VideoPlayer extends React.Component {
 }
 
 export default VideoPlayer
-
 VideoPlayer.propTypes = {
     videoHostUri: PropTypes.string,
     videoName: PropTypes.string

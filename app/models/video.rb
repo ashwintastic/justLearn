@@ -5,8 +5,10 @@ class Video < ApplicationRecord
   class << self
 
    
-   def search_tags(search_param)
-    Tag.where('name like (:tag_query)', tag_query: "%#{search_param}%").map(&:id)
+   def search_tags(keywords_to_search)
+    tag_to_search = keywords_to_search.map {|val| "%#{val}%" }
+    debugger
+    Tag.where('name ilike  any (array[?])', tag_to_search).map(&:id)
    end
 
    def search_video_in_tag_mapping(tag_query)
@@ -19,19 +21,12 @@ class Video < ApplicationRecord
    end
 
     def search_videos(search_param)
-      if is_related_param(search_param)
-      find_related_videos_as_well
-    else
-      tags_to_search = slice_tag(search_param)
-      tags = search_tags(search_param)
+      keywords_to_search = slice_tag(search_param)
+      tags = search_tags(keywords_to_search)
       video_tags = search_video_in_tag_mapping(tags) 
       result =	where('name like (:query)', query: "%#{search_param}%").or(where(id: video_tags ))
-     end
     end
 
-    def find_related_videos_as_well
-      []
-    end
 
       def slice_tag(search_param)
         tags_in_params = search_param.split(' ')
