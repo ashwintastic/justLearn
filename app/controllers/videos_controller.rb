@@ -40,6 +40,7 @@ class VideosController < ApplicationController
   #end
   # POST /videos
   # POST /videos.json
+  
   def create
     @video = Video.new(video_params)
 
