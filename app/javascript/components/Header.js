@@ -17,8 +17,10 @@ class Header extends React.Component {
 
     getOptions(e){
         console.log("hi", e)
-        if (e === '')
+        if (e === ''){
          return
+        }
+      
         return callApi('http://localhost:3000/search/'+e).then( (resp)=>{
            console.log('heheh', resp)
            //this.setState({options: resp.options})
@@ -28,7 +30,6 @@ class Header extends React.Component {
     }
 
     handleOnChange(e){
-     console.log("hikkkkk", e)
      window.history.pushState("", "", "/?q="+e.value);
      window.location.reload();
 

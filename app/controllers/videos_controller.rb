@@ -8,7 +8,6 @@ class VideosController < ApplicationController
   # GET /videos.json
   def index
     @videos = if params.include?(:q)
-
     Video.search_videos(params[:q]) 
   else
     Video.all

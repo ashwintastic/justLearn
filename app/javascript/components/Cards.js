@@ -13,6 +13,9 @@ class Cards extends React.Component {
 
     }
 
+   componentWillReceiveProps(props){
+    console.log("hey man propr")
+   }
 
     screeWidth(){
         screen = window.screen.width;
@@ -62,6 +65,7 @@ class Cards extends React.Component {
     }
 
     render () {
+        console.log("hey man render", this.props)
         let cards = this.grid();
         return (
             <div className="cards">
