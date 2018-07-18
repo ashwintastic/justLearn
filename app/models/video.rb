@@ -7,7 +7,6 @@ class Video < ApplicationRecord
    
    def search_tags(keywords_to_search)
     tag_to_search = keywords_to_search.map {|val| "%#{val}%" }
-    debugger
     Tag.where('name ilike  any (array[?])', tag_to_search).map(&:id)
    end
 
