@@ -30,6 +30,7 @@ class Header extends React.Component {
     }
 
     handleOnChange(e){
+     // test
      window.history.pushState("", "", "/?q="+e.value);
      window.location.reload();
 
