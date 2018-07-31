@@ -1,6 +1,5 @@
 class Keyword < ApplicationRecord
 	validates :name, uniqueness: true
-    include Shared::Tokenable
     # test
 	class << self
 	  def suggest_keywords(search_param)

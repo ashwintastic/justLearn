@@ -20,7 +20,7 @@ module Shared::Tokenable
           self.token = SecureRandom.random_number.to_s.slice(2, 17)
         end
       end
-      self.token
+      token
     end
 
     def acceptable_token

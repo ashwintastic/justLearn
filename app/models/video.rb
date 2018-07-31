@@ -1,35 +1,71 @@
+require 'elasticsearch/model'
 class Video < ApplicationRecord
   has_many :video_tag_mappings
   has_many :tags, through: :video_tag_mappings
-  include Shared::Tokenable
-  class << self
+ # include Shared::Tokenable
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
-   
-   def search_tags(keywords_to_search)
-    tag_to_search = keywords_to_search.map {|val| "%#{val}%" }
-    Tag.where('name ilike  any (array[?])', tag_to_search).map(&:id)
-   end
-
-   def search_video_in_tag_mapping(tag_query)
-    VideoTagMapping.where(tag_id: tag_query).map(&:video_id).uniq
-   end
-
-   def is_related_param(search_param)
-     keyword =  Keyword.find_by_name(search_param)
-     !!(keyword.and_related)
-   end
-
-    def search_videos(search_param)
-      keywords_to_search = slice_tag(search_param)
-      tags = search_tags(keywords_to_search)
-      video_tags = search_video_in_tag_mapping(tags) 
-      result =	where('name like (:query)', query: "%#{search_param}%").or(where(id: video_tags ))
+  settings index: {
+      number_of_shards: 1,
+      number_of_replicas: 0,
+      analysis: {
+          analyzer: {
+              my_analyzer: {
+                  type: 'custom',
+                  tokenizer: 'standard',
+                  filter: ['standard', 'lowercase', 'stemmer']
+              }
+          }
+      }
+  } do
+    mappings dynamic: 'false' do
+      indexes :name, type: 'string', analyzer: 'my_analyzer'
+      indexes :desc, type: 'string', analyzer: 'my_analyzer'
     end
+  end
 
 
-      def slice_tag(search_param)
-        tags_in_params = search_param.split(' ')
-        tags_in_params - SkippableWords::SKIP_TAGS
-      end
+
+=begin
+
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :name, type: 'string', analyzer: 'english'
+      indexes :desc, type: 'string', analyzer: 'english'
+    end
+  end
+=end
+
+  class << self
+    def search(query)
+      __elasticsearch__.search(
+          {
+              query: {
+                  multi_match: {
+                      query: query,
+                      fields: %w(name desc)
+                  }
+              },
+              highlight: {
+                  pre_tags: ['<em>'],
+                  post_tags: ['</em>'],
+                  fields: {
+                      title: {},
+                      text: {}
+                  }
+              }
+          }
+      )
+    end
   end
 end
+Video.__elasticsearch__.client.indices.delete index: Video.index_name rescue nil
+
+# Create the new index with the new mapping
+Video.__elasticsearch__.client.indices.create \
+  index: Video.index_name,
+  body: { settings: Video.settings.to_hash, mappings: Video.mappings.to_hash }
+
+# Index all Video records from the DB to Elasticsearch
+Video.import

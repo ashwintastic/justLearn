@@ -21,7 +21,8 @@ class VideosController < ApplicationController
   end
 
   def search_video
-    resp = Keyword.suggest_keywords(params[:name])
+    #resp = Keyword.suggest_keywords(params[:name])
+    resp = Video.search(params[:name])
     render json: {options: resp}
     # resp = Video.search_videos(params[:name])
   end
@@ -40,7 +41,7 @@ class VideosController < ApplicationController
   #end
   # POST /videos
   # POST /videos.json
-  
+
   def create
     @video = Video.new(video_params)
 

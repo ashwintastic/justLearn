@@ -6,6 +6,10 @@ git_source(:github) do |repo_name|
 end
 
 
+# elastic-search
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 # UI
 
 gem 'webpacker'
