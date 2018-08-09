@@ -18,10 +18,10 @@ class Header extends React.Component {
     getOptions(e){
         console.log("hi", e)
         if (e === ''){
-         return
+         return null
         }
       
-        return callApi('http://localhost:4000/search/'+e).then( (resp)=>{
+        return callApi('http://172.19.19.59:4000/auto_suggestions/'+e).then( (resp)=>{
            console.log('heheh', resp)
            //this.setState({options: resp.options})
            return {options: resp.options}
@@ -31,7 +31,7 @@ class Header extends React.Component {
 
     handleOnChange(e){
      // test
-     window.history.pushState("", "", "/?q="+e.value);
+     window.history.pushState("", "", "videos/?q="+e.value);
      window.location.reload();
 
     }
@@ -46,9 +46,9 @@ class Header extends React.Component {
                 
                     <Async
                         name="form-field-name"
-                        value="one"
                         loadOptions={this.getOptions.bind(this)}
                         onChange = {this.handleOnChange}
+                        placeholder = 'Search'
                 
                     />
 

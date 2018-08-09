@@ -8,9 +8,9 @@ class VideosController < ApplicationController
   # GET /videos.json
   def index
     @videos = if params.include?(:q)
-    Video.search_videos(params[:q]) 
-  else
-    Video.all
+    Video.search_(params[:q])
+              else
+    Video.all_
   end
   end
 
@@ -21,10 +21,17 @@ class VideosController < ApplicationController
   end
 
   def search_video
-    #resp = Keyword.suggest_keywords(params[:name])
-    resp = Video.search(params[:name])
+    resp = Video.search_(params[:name])
+    if resp.count != 0
+      render json: { options: resp }
+      return
+    end
+    suggestions
+  end
+
+  def suggestions
+    resp = Video.suggestions(params[:name])
     render json: {options: resp}
-    # resp = Video.search_videos(params[:name])
   end
   # GET /videos/new
   def new

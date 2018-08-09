@@ -4,6 +4,12 @@
   position: fixed;
 }
 
+.vp-hr-title{
+  margin-left: 13px;
+  top: 12px;
+  position: relative;
+}
+
 @media screen and (max-width: 650px) {
   body {
 
@@ -35,5 +41,11 @@
   }
 
   .video-top-margin {margin-top:27px}
+
+  .vp-hr-title{
+    margin-left: -27px;
+    top: 12px;
+    position: relative;
+  }
 }
 

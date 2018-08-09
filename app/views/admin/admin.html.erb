@@ -1,0 +1,38 @@
+<style>
+  @media (min-width: 1200px){
+    .container {
+      width: 843px !important;
+    }
+    .row {
+      /* margin-right: -106px !important; */
+      margin-left: -181px !important;
+      width: 43% !important;
+      float: right;
+      /* right: 5px; */
+      margin-right: -85px !important;
+    }
+
+    .cards {
+      /* padding-top: 10px; */
+      margin-top: -473px !important;
+
+      margin-left: 300px !important;
+    }
+
+  }
+</style>
+
+
+
+<%= react_component('VideoPlayer', {
+    videoName: @video.name,
+    videoHostUri: ENV['VIDEO_HOST_URI'],
+    cardInfo: @videos,
+    imgPath: ENV['IMAGE_HOST_URL'],
+} ) %>
+<br/>
+<%= react_component('Cards', {cardInfo: @videos,
+                              imgPath: ENV['IMAGE_HOST_URL'],
+                              videoUrl: ENV['VIDEO_HOST_URI'],
+                              isIndex: false}
+    ) %>

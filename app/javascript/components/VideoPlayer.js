@@ -9,17 +9,33 @@ class VideoPlayer extends React.Component {
 
     }
 
+
+    forward(){
+        this.refs.player.forward(10);
+    }
+
+    backward(){
+        this.refs.player.replay(10)
+    }
+
     render () {
         const {videoHostUri, videoName } = this.props;
         return (
             <div className="container-fluid">
                 <div className="col-sm-8 offset-sm-2">
                     <div className="container custom-row video-top-margin">
-                        <Player
-                            playsInline
-                            src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
-                            poster="https://www.planwallpaper.com/static/images/2015-wallpaper_111525594_269.jpg"
+                        <Player ref="player"
+                                playsInline
+                                src='https://media.w3.org/2010/05/sintel/trailer_hd.mp4'
+                                poster="https://www.planwallpaper.com/static/images/2015-wallpaper_111525594_269.jpg"
                         />
+                    </div>
+                    <div className="vp-hr-title">
+                        <h4>{videoName}</h4>
+                        <button onClick = {this.forward.bind(this)}> >> </button>
+                        <button onClick = {this.backward.bind(this)}> back </button>
+
+                        <hr/>
                     </div>
                 </div>
             </div>

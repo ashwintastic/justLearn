@@ -1,0 +1,48 @@
+{
+    "app": {
+        "settings": {
+            "index": {
+                "creation_date": "1460370729368",
+                "uuid": "zRfx6USRSfazbLLyIHbqnw",
+                "analysis": {
+                    "char_filter": {
+                        "spaces": {
+                            "type": "pattern_replace",
+                            "pattern": "/ /g",
+                            "replacement": "-"
+                        }
+                    },
+                    "analyzer": {
+                        "marque_search": {
+                            "type": "custom",
+                            "char_filter": [
+                                "spaces"
+                            ],
+                            "filter": [
+                                "trim",
+                                "lowercase"
+                            ],
+                            "tokenizer": "standard"
+                        },
+                        "marque_index": {
+                            "type": "custom",
+                            "char_filter": [
+                                "spaces"
+                            ],
+                            "filter": [
+                                "trim",
+                                "lowercase"
+                            ],
+                            "tokenizer": "standard"
+                        }
+                    }
+                },
+                "number_of_replicas": "1",
+                "number_of_shards": "5",
+                "version": {
+                    "created": "1070599"
+                }
+            }
+        }
+    }
+}

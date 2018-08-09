@@ -47,16 +47,16 @@ class Cards extends React.Component {
        let customXsMd = this.screeWidth();
       let  url = this.props.videoUrl;
         if (screen > 200 && screen < 700) {
-            url = 'http://192.168.0.105:3000/videos/'
+            url = 'http://172.19.19.59:4000/videos/'
         }
 
         return  this.props.cardInfo.map( (card) => {
             return (
-                <a href = {url+card.token} key={card.id}>
+                <a href = {url+card._source.token} key={card._id}>
                 <Col xs={customXsMd.xs} md={customXsMd.md} key={card.token}>
                     <Thumbnail src='https://www.planwallpaper.com/static/images/2015-wallpaper_111525594_269.jpg'
                                >
-                        <h4>{card.name}</h4>
+                        <h4>{card._source.name}</h4>
                     </Thumbnail>
                 </Col>
                 </a>

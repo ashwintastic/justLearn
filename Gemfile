@@ -14,9 +14,12 @@ gem 'elasticsearch-rails'
 
 gem 'webpacker'
 gem 'react-rails'
-
+gem 'awesome_print'
 # env
 gem 'dotenv-rails', require: 'dotenv/rails-now'
+
+# json 
+gem 'json'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
