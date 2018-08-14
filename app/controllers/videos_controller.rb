@@ -8,10 +8,10 @@ class VideosController < ApplicationController
   # GET /videos.json
   def index
     @videos = if params.include?(:q)
-    Video.search_(params[:q])
+                set_video
               else
     Video.all_
-  end
+              end
   end
 
   # GET /videos/1
@@ -91,7 +91,7 @@ class VideosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
-      @video = Video.find_by_token(params[:id])
+      @video =  Video.search_(params[:q])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
